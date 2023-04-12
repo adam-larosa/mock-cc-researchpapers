@@ -4,7 +4,7 @@ from faker import Faker
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from app import app
-from models import db, Research, Author, ResearchAuthors
+from models import db, Research, Author, ResearchAuthor
 
 with app.app_context():
 
@@ -13,7 +13,7 @@ with app.app_context():
     print("Deleting data...")
     Research.query.delete()
     Author.query.delete()
-    ResearchAuthors.query.delete()
+    ResearchAuthor.query.delete()
 
     print("Creating Research...")
     r1 = Research(topic = "AI In Day To Day Life", year = 1994, page_count = 10)
@@ -31,10 +31,10 @@ with app.app_context():
 
     print("Creating ResearchAuthors...")
 
-    ra1 = ResearchAuthors(author_id = a1, research_id = r1)
-    ra2 = ResearchAuthors(author_id = a2, research_id  = r2)
-    ra3 = ResearchAuthors(author_id = a3, research_id = r3)
-    ra4 = ResearchAuthors(author_id = a1, research_id = r3)
+    ra1 = ResearchAuthor(author = a1, research = r1)
+    ra2 = ResearchAuthor(author = a2, research  = r2)
+    ra3 = ResearchAuthor(author = a3, research = r3)
+    ra4 = ResearchAuthor(author = a1, research = r3)
     researchAuthor = [ra1, ra2, ra3, ra4]
     db.session.add_all(research_papers)
     db.session.add_all(authors)
